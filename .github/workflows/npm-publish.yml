@@ -14,7 +14,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: "https://packages.ecbf.dev"
+          registry-url: "https://registry.npmjs.org"
+      - run: npm config set @ecbf:registry https://packages.ecbf.dev
+      - run: npm config set //packages.ecbf.dev/:_authToken ${{ secrets.NPM_TOKEN }}
       - run: npm ci
       - run: npm publish
         env:
